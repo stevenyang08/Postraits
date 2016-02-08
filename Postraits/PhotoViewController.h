@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  PhotoViewController.h
 //  Postraits
 //
 //  Created by Steven Yang on 2/6/16.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+@interface PhotoViewController : UIViewController
 
 @end
-
