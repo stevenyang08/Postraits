@@ -1,10 +1,13 @@
 PODS:
+  - Firebase (2.5.0)
   - TGCameraViewController (2.2.2)
 
 DEPENDENCIES:
+  - Firebase
   - TGCameraViewController
 
 SPEC CHECKSUMS:
+  Firebase: 744617c0733b45198f9486ebd5cac64ec2d10d79
   TGCameraViewController: 010082bae689f3940b132b310b44e4ddc5a4f8e4
 
 COCOAPODS: 0.39.0
