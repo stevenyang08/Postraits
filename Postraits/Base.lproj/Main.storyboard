@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="1zi-9j-JFJ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Bb5-aY-ZjW">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Photo View Controller-->
@@ -66,6 +67,118 @@
             </objects>
             <point key="canvasLocation" x="1137" y="399"/>
         </scene>
+        <!--Postraits-->
+        <scene sceneID="OCw-bS-FIs">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="afi-hb-jHz" customClass="FeedViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="1kU-cC-Wsa"/>
+                        <viewControllerLayoutGuide type="bottom" id="pV5-Gq-Rw3"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="LIf-nF-Gsa">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="DQd-cF-qu9">
+                                <rect key="frame" x="0.0" y="539" width="600" height="61"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qNd-47-oau">
+                                        <rect key="frame" x="0.0" y="0.0" width="120" height="61"/>
+                                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <inset key="imageEdgeInsets" minX="30" minY="5" maxX="30" maxY="5"/>
+                                        <state key="normal" image="home_icon"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xpu-Ee-pI5">
+                                        <rect key="frame" x="120" y="0.0" width="120" height="61"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="61" id="8UF-wO-sie"/>
+                                        </constraints>
+                                        <inset key="imageEdgeInsets" minX="25" minY="5" maxX="25" maxY="5"/>
+                                        <state key="normal" title="Button" image="search_icon"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1kG-xm-8k0">
+                                        <rect key="frame" x="240" y="0.0" width="120" height="61"/>
+                                        <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <inset key="imageEdgeInsets" minX="20" minY="2" maxX="20" maxY="2"/>
+                                        <state key="normal" image="camera_icon"/>
+                                        <connections>
+                                            <action selector="takePhotoTapped" destination="afi-hb-jHz" eventType="touchUpInside" id="dsh-RB-CGR"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l8R-ti-MYu">
+                                        <rect key="frame" x="360" y="0.0" width="120" height="61"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <inset key="imageEdgeInsets" minX="20" minY="5" maxX="20" maxY="5"/>
+                                        <state key="normal" image="like_icon"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="05a-K9-oBz">
+                                        <rect key="frame" x="480" y="0.0" width="120" height="61"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <inset key="imageEdgeInsets" minX="20" minY="5" maxX="20" maxY="5"/>
+                                        <state key="normal" image="user_icon"/>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="318" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="YSQ-N9-vYC">
+                                <rect key="frame" x="0.0" y="64" width="600" height="475"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="320" id="OKz-i5-qK3" customClass="FeedTableViewCell">
+                                        <rect key="frame" x="0.0" y="28" width="600" height="320"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OKz-i5-qK3" id="Geo-AN-Tf6">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="319.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MI4-H4-Ikk">
+                                                    <rect key="frame" x="0.0" y="8" width="600" height="287.5"/>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="MI4-H4-Ikk" secondAttribute="bottom" constant="16" id="8zw-4f-R2x"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="MI4-H4-Ikk" secondAttribute="trailing" constant="-8" id="Cjn-f5-38P"/>
+                                                <constraint firstItem="MI4-H4-Ikk" firstAttribute="top" secondItem="Geo-AN-Tf6" secondAttribute="topMargin" id="NmD-YW-l4O"/>
+                                                <constraint firstItem="MI4-H4-Ikk" firstAttribute="leading" secondItem="Geo-AN-Tf6" secondAttribute="leadingMargin" constant="-8" id="eUa-uP-Ko7"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="photoImage" destination="MI4-H4-Ikk" id="cOd-Ug-LdN"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="afi-hb-jHz" id="9yO-38-VAm"/>
+                                    <outlet property="delegate" destination="afi-hb-jHz" id="1jD-GC-dJd"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="YSQ-N9-vYC" firstAttribute="leading" secondItem="LIf-nF-Gsa" secondAttribute="leadingMargin" constant="-20" id="DSs-kX-CPs"/>
+                            <constraint firstItem="YSQ-N9-vYC" firstAttribute="top" secondItem="1kU-cC-Wsa" secondAttribute="bottom" id="EZl-vP-eVL"/>
+                            <constraint firstItem="DQd-cF-qu9" firstAttribute="top" secondItem="YSQ-N9-vYC" secondAttribute="bottom" id="RPW-C6-VI6"/>
+                            <constraint firstItem="DQd-cF-qu9" firstAttribute="leading" secondItem="LIf-nF-Gsa" secondAttribute="leadingMargin" constant="-20" id="TeE-qp-yhO"/>
+                            <constraint firstItem="pV5-Gq-Rw3" firstAttribute="top" secondItem="DQd-cF-qu9" secondAttribute="bottom" id="VLi-jL-SZ5"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="YSQ-N9-vYC" secondAttribute="trailing" constant="-20" id="rlq-g9-Tda"/>
+                            <constraint firstItem="DQd-cF-qu9" firstAttribute="top" secondItem="YSQ-N9-vYC" secondAttribute="bottom" id="wB1-v8-oTd"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="DQd-cF-qu9" secondAttribute="trailing" constant="-20" id="xZd-ZA-72v"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="RPW-C6-VI6"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <navigationItem key="navigationItem" title="Postraits" id="EIG-LU-MuV"/>
+                    <connections>
+                        <outlet property="tableView" destination="YSQ-N9-vYC" id="dRc-Bq-bu8"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Arl-TY-xPq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1949" y="1071"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="Mdd-9r-MMZ">
             <objects>
@@ -84,5 +197,30 @@
             </objects>
             <point key="canvasLocation" x="325" y="399"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="XA2-NP-zNA">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Bb5-aY-ZjW" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="H1K-fW-TH6">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="afi-hb-jHz" kind="relationship" relationship="rootViewController" id="CVR-Bf-5QE"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MgK-nt-E3H" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1137" y="1071"/>
+        </scene>
     </scenes>
+    <resources>
+        <image name="camera_icon" width="512" height="512"/>
+        <image name="home_icon" width="512" height="512"/>
+        <image name="like_icon" width="256" height="173"/>
+        <image name="search_icon" width="2400" height="2382"/>
+        <image name="user_icon" width="512" height="512"/>
+    </resources>
 </document>

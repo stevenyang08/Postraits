@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7B27E8AD1C66E32100A1AD45 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B27E8AC1C66E32100A1AD45 /* MainViewController.m */; };
 		7B27E8B01C66E37B00A1AD45 /* PhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B27E8AF1C66E37B00A1AD45 /* PhotoViewController.m */; };
 		7B67A68D1C66DDB6009E89CE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B67A68C1C66DDB6009E89CE /* main.m */; };
 		7B67A6901C66DDB6009E89CE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B67A68F1C66DDB6009E89CE /* AppDelegate.m */; };
@@ -15,14 +14,15 @@
 		7B67A6991C66DDB6009E89CE /* Postraits.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7B67A6971C66DDB6009E89CE /* Postraits.xcdatamodeld */; };
 		7B67A69B1C66DDB6009E89CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7B67A69A1C66DDB6009E89CE /* Assets.xcassets */; };
 		7B67A69E1C66DDB6009E89CE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B67A69C1C66DDB6009E89CE /* LaunchScreen.storyboard */; };
+		7BA860A91C696D8600B13609 /* CustomClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BA860A81C696D8600B13609 /* CustomClass.m */; };
+		7BDF92B51C694FC200C78B0F /* FeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BDF92B41C694FC200C78B0F /* FeedViewController.m */; };
+		7BDF92B81C69681F00C78B0F /* FeedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BDF92B71C69681F00C78B0F /* FeedTableViewCell.m */; };
 		D4045CAE33A8E2BEE4413EFC /* libPods-Postraits.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC2666E4AC1CCE8EA84C8570 /* libPods-Postraits.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0C0764648EDEC49D76B42A43 /* Pods-Postraits.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Postraits.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Postraits/Pods-Postraits.debug.xcconfig"; sourceTree = "<group>"; };
 		0EF4E39F6C664DBD49A4AC62 /* Pods-Postraits.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Postraits.release.xcconfig"; path = "Pods/Target Support Files/Pods-Postraits/Pods-Postraits.release.xcconfig"; sourceTree = "<group>"; };
-		7B27E8AB1C66E32100A1AD45 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
-		7B27E8AC1C66E32100A1AD45 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		7B27E8AE1C66E37B00A1AD45 /* PhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoViewController.h; sourceTree = "<group>"; };
 		7B27E8AF1C66E37B00A1AD45 /* PhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoViewController.m; sourceTree = "<group>"; };
 		7B67A6881C66DDB6009E89CE /* Postraits.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Postraits.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -34,6 +34,12 @@
 		7B67A69A1C66DDB6009E89CE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7B67A69D1C66DDB6009E89CE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7B67A69F1C66DDB6009E89CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7BA860A71C696D8600B13609 /* CustomClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomClass.h; sourceTree = "<group>"; };
+		7BA860A81C696D8600B13609 /* CustomClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomClass.m; sourceTree = "<group>"; };
+		7BDF92B31C694FC200C78B0F /* FeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedViewController.h; sourceTree = "<group>"; };
+		7BDF92B41C694FC200C78B0F /* FeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedViewController.m; sourceTree = "<group>"; };
+		7BDF92B61C69681F00C78B0F /* FeedTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedTableViewCell.h; sourceTree = "<group>"; };
+		7BDF92B71C69681F00C78B0F /* FeedTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedTableViewCell.m; sourceTree = "<group>"; };
 		DC2666E4AC1CCE8EA84C8570 /* libPods-Postraits.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Postraits.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -62,6 +68,12 @@
 			children = (
 				7B27E8AE1C66E37B00A1AD45 /* PhotoViewController.h */,
 				7B27E8AF1C66E37B00A1AD45 /* PhotoViewController.m */,
+				7BDF92B31C694FC200C78B0F /* FeedViewController.h */,
+				7BDF92B41C694FC200C78B0F /* FeedViewController.m */,
+				7BDF92B61C69681F00C78B0F /* FeedTableViewCell.h */,
+				7BDF92B71C69681F00C78B0F /* FeedTableViewCell.m */,
+				7BA860A71C696D8600B13609 /* CustomClass.h */,
+				7BA860A81C696D8600B13609 /* CustomClass.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -109,8 +121,6 @@
 		7B67A68B1C66DDB6009E89CE /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				7B27E8AB1C66E32100A1AD45 /* MainViewController.h */,
-				7B27E8AC1C66E32100A1AD45 /* MainViewController.m */,
 				7B67A68E1C66DDB6009E89CE /* AppDelegate.h */,
 				7B67A68F1C66DDB6009E89CE /* AppDelegate.m */,
 				7B67A68C1C66DDB6009E89CE /* main.m */,
@@ -250,8 +260,10 @@
 			files = (
 				7B67A6901C66DDB6009E89CE /* AppDelegate.m in Sources */,
 				7B67A68D1C66DDB6009E89CE /* main.m in Sources */,
+				7BA860A91C696D8600B13609 /* CustomClass.m in Sources */,
 				7B67A6991C66DDB6009E89CE /* Postraits.xcdatamodeld in Sources */,
-				7B27E8AD1C66E32100A1AD45 /* MainViewController.m in Sources */,
+				7BDF92B81C69681F00C78B0F /* FeedTableViewCell.m in Sources */,
+				7BDF92B51C694FC200C78B0F /* FeedViewController.m in Sources */,
 				7B27E8B01C66E37B00A1AD45 /* PhotoViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
