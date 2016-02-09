@@ -9,6 +9,7 @@
 #import "LoginViewController.h"
 #import "SignupViewController.h"
 #import <Firebase/Firebase.h>
+#import "Constants.h"
 
 @interface LoginViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;
@@ -32,7 +33,7 @@
 }
 
 - (IBAction)loginButtonTapped:(UIButton *)sender {
-    Firebase *ref = [[Firebase alloc] initWithUrl:@"https://postrait.firebaseio.com"];
+    Firebase *ref = [[Firebase alloc] initWithUrl:BASE_URL];
     [ref authUser:self.emailTextField.text password:self.passwordTextField.text
 withCompletionBlock:^(NSError *error, FAuthData *authData) {
     if (error) {

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" initialViewController="01J-lp-oVM">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -19,23 +19,48 @@
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Postrait" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0dG-nn-Sc3">
                                 <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="360" id="721-Mz-GvE"/>
+                                    <constraint firstAttribute="height" constant="291" id="9pX-vo-xdv"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="SavoyeLetPlain" family="Savoye LET" pointSize="120"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
-                                <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="20" y="154" width="360" height="291"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="721-Mz-GvE"/>
+                                        <exclude reference="9pX-vo-xdv"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="721-Mz-GvE"/>
+                                        <include reference="9pX-vo-xdv"/>
+                                    </mask>
                                 </variation>
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.60244525019999995" blue="0.1580023478" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="0dG-nn-Sc3" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="1U2-gT-zlc"/>
+                            <constraint firstItem="0dG-nn-Sc3" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="GLp-hf-MVV"/>
+                        </constraints>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="0dG-nn-Sc3"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="1U2-gT-zlc"/>
+                                <exclude reference="GLp-hf-MVV"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
                             <mask key="subviews">
                                 <include reference="0dG-nn-Sc3"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="1U2-gT-zlc"/>
+                                <include reference="GLp-hf-MVV"/>
                             </mask>
                         </variation>
                     </view>
