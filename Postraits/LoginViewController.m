@@ -21,8 +21,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapFrom:)];
+    [self.view addGestureRecognizer:tapGestureRecognizer];
 }
 
+- (void) handleTapFrom: (UITapGestureRecognizer *)recognizer
+{
+    [self.emailTextField resignFirstResponder];
+    [self.passwordTextField resignFirstResponder];
+}
 
 - (IBAction)loginButtonTapped:(UIButton *)sender {
     Firebase *ref = [[Firebase alloc] initWithUrl:@"https://postrait.firebaseio.com"];

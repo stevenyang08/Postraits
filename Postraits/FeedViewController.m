@@ -34,8 +34,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // save image at album
+    self.photo = [CustomClass new];
     self.navigationController.navigationBar.backgroundColor = [UIColor orangeColor];
-    //self.pictureArray = [NSMutableArray new];
+    self.pictureArray = [NSMutableArray new];
+    
+    for (int i = 0; i < 20; i++) {
+        CustomClass *post = [CustomClass new];
+        post.user = [NSString stringWithFormat:@"User %i", i];
+        post.image = [UIImage imageNamed:@"empty"];
+        [self.pictureArray addObject:post];
+    }
+    
     self.tableView.rowHeight = 320;
     [TGCamera setOption:kTGCameraOptionSaveImageToAlbum value:[NSNumber numberWithBool:YES]];
     
@@ -78,14 +87,14 @@
 
 - (void)cameraDidTakePhoto:(UIImage *)image
 {
-    self.photoView.image = image;
-    [self.tableView reloadData];
+    self.photo.image = image;
     [self dismissViewControllerAnimated:YES completion:nil];
+    [self.tableView reloadData];
 }
 
 - (void)cameraDidSelectAlbumPhoto:(UIImage *)image
 {
-    self.photoView.image = image;
+    self.photo.image = image;
     [self.tableView reloadData];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -138,9 +147,9 @@
 - (void)imagePickerController:(UIImagePickerController *)picker
 didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-    self.photoView.image = [TGAlbum imageWithMediaInfo:info];
-    [self.tableView reloadData];
+    self.photo.image = [TGAlbum imageWithMediaInfo:info];
     [self dismissViewControllerAnimated:YES completion:nil];
+    [self.tableView reloadData];
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
@@ -151,19 +160,19 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
 #pragma mark - TableView
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     FeedTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-    //cell.imageView.image = self.pictureArray[indexPath.row];
-    //cell.photoImage.image = self.pictureArray[indexPath.row];
-    cell.photoImage.image = self.photoView.image;
+    cell.photoImage.image = self.photo.image;
+    //cell.usernameLabel.text = self.photo.user;
+    cell.usernameLabel.text = @"myself123";
     return cell;
 }
 
--(NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index {
-    return 2;
-}
+//-(NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index {
+//    return 2;
+//}
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     //return self.pictureArray.count;
-    return 1;
+    return self.pictureArray.count;
 }
 
 /*

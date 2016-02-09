@@ -10,5 +10,6 @@
 
 @interface FeedTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *photoImage;
+@property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 
 @end
