@@ -1173,10 +1173,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="camera_icon" width="30" height="30"/>
-        <image name="home_icon" width="30" height="30"/>
-        <image name="search_icon" width="30" height="30"/>
-        <image name="user_icon" width="30" height="30"/>
+        <image name="camera_icon" width="512" height="512"/>
+        <image name="home_icon" width="512" height="512"/>
+        <image name="search_icon" width="2400" height="2382"/>
+        <image name="user_icon" width="512" height="512"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="l71-DV-hMx"/>
