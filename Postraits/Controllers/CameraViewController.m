@@ -8,6 +8,7 @@
 
 #import "CameraViewController.h"
 #import "TGCameraViewController.h"
+#import "DataService.h"
 #import "CustomClass.h"
 
 
@@ -50,7 +51,23 @@
 
 - (void)cameraDidTakePhoto:(UIImage *)image
 {
-    self.photo.image = image;
+    NSData *imageData = UIImageJPEGRepresentation(image, 1.0);
+    NSString *base64String = [imageData base64EncodedStringWithOptions:0];
+    
+    NSDictionary *quoteString = [[NSDictionary alloc] initWithObjects:@[base64String] forKeys:@[@"string"]];
+    
+    
+    Firebase *imageRef = [[DataService dataService] IMAGE_REF];
+    Firebase *newImageRef = [imageRef childByAutoId];
+    
+    [newImageRef setValue:quoteString withCompletionBlock:^(NSError *error, Firebase *ref) {
+        if(!error){
+            NSDictionary *updatedImages = @{ref.key: [NSNumber numberWithBool:true]};
+            [[[[DataService dataService] CURRENT_USER_REF] childByAppendingPath:@"images"] updateChildValues:updatedImages];
+        }
+    }];
+    
+    
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

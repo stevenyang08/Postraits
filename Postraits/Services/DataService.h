@@ -15,6 +15,7 @@
 
 @property (nonatomic, assign) Firebase* BASE_REF;
 @property (nonatomic, assign) Firebase* USER_REF;
+@property (nonatomic, assign) Firebase* IMAGE_REF;
 @property (nonatomic, assign) Firebase* CURRENT_USER_REF;
 
 - (void) createNewAccount:(NSString *)uid user:(NSDictionary *)user;

@@ -31,6 +31,11 @@
     return ref;
 }
 
+- (Firebase *) IMAGE_REF {
+    Firebase *ref = [[Firebase alloc] initWithUrl:[NSString stringWithFormat:@"%@%@", BASE_URL, @"/images"]];
+    return ref;
+}
+
 - (Firebase *) CURRENT_USER_REF {
     NSString *userId = [[NSUserDefaults standardUserDefaults] valueForKey:@"uid"];
     
@@ -42,6 +47,7 @@
 - (void) createNewAccount:(NSString *)uid user:(NSDictionary *)user{
     [[[self USER_REF] childByAppendingPath:uid] setValue:user];
 }
+
 
 
 

@@ -57,33 +57,6 @@
     [self.tableView reloadData];
 }
 
-
-
-#pragma mark - Upload Photo
-
-- (IBAction)chooseExistingPhotoTapped
-{
-    UIImagePickerController *pickerController =
-    [TGAlbum imagePickerControllerWithDelegate:self];
-    
-    [self presentViewController:pickerController animated:YES completion:nil];
-}
-
-#pragma mark - UIImagePickerControllerDelegate
-
-- (void)imagePickerController:(UIImagePickerController *)picker
-didFinishPickingMediaWithInfo:(NSDictionary *)info
-{
-//    self.photo.image = [TGAlbum imageWithMediaInfo:info];
-    [self dismissViewControllerAnimated:YES completion:nil];
-    [self.tableView reloadData];
-}
-
-- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
-{
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
 #pragma mark - TableView
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     FeedTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];

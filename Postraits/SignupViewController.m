@@ -55,8 +55,6 @@
             [[[DataService dataService] BASE_REF] authUser:email password:password withCompletionBlock:^(NSError *error, FAuthData *authData) {
                 NSDictionary *user = [[NSDictionary alloc] initWithObjects:@[authData.provider, email] forKeys:@[@"provider", @"email"]];
                 
-                
-                
                 [[DataService dataService] createNewAccount:authData.uid user:user];
             }];
             [[NSUserDefaults standardUserDefaults] setValue:[result objectForKey:@"uid"] forKey:@"uid"];
