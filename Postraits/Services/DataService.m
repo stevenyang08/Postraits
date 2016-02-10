@@ -16,8 +16,6 @@
 
 @implementation DataService
 
-@synthesize BASE_REF;
-
 + (instancetype) dataService {
     return [[DataService alloc] init];
 }
@@ -36,7 +34,7 @@
 - (Firebase *) CURRENT_USER_REF {
     NSString *userId = [[NSUserDefaults standardUserDefaults] valueForKey:@"uid"];
     
-    Firebase *ref = [[BASE_REF childByAppendingPath:@"users"] childByAppendingPath:userId];
+    Firebase *ref = [[[self BASE_REF] childByAppendingPath:@"users"] childByAppendingPath:userId];
     
     return ref;
 }
