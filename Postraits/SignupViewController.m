@@ -9,6 +9,8 @@
 #import "SignupViewController.h"
 #import "Firebase/Firebase.h"
 #import "LoginViewController.h"
+#import "Constants.h"
+#import "DataService.h"
 
 
 
@@ -35,25 +37,30 @@
 }
 
 - (IBAction)createAccountButtonTapped:(UIButton *)sender {
+    NSString *email = self.emailTextField.text;
+    NSString *password = self.passwordTextField.text;
     
-    
-    Firebase *ref = [[Firebase alloc] initWithUrl:@"https://postrait.firebaseio.com"];
-    [ref createUser:self.emailTextField.text password:self.passwordTextField.text
-withValueCompletionBlock:^(NSError *error, NSDictionary *result) {
-    if (error) {
-        // There was an error creating the account
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Error" message:@"There was an error creating the account. Try again!" preferredStyle:UIAlertControllerStyleAlert];
+    Firebase *ref = [[Firebase alloc] initWithUrl:BASE_URL];
+    [ref createUser:email password:password withValueCompletionBlock:^(NSError *error, NSDictionary *result) {
         
-        UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
-        [alertController addAction:ok];
-        
-        [self presentViewController:alertController animated:YES completion:nil];
-    } else {
-      //  NSString *uid = [result objectForKey:@"uid"];
-       // NSLog(@"Successfully created user account with uid: %@", uid);
-        [self performSegueWithIdentifier:@"createAccount" sender:self];
-    }
-}];
+        if (error) {
+            // There was an error creating the account
+            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Error" message:@"There was an error creating the account. Try again!" preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+            [alertController addAction:ok];
+            
+            [self presentViewController:alertController animated:YES completion:nil];
+        } else {
+            [[[DataService dataService] BASE_REF] authUser:email password:password withCompletionBlock:^(NSError *error, FAuthData *authData) {
+                NSDictionary *user = [[NSDictionary alloc] initWithObjects:@[authData.provider, email] forKeys:@[@"provider", @"email"]];
+                
+                [[DataService dataService] createNewAccount:authData.uid user:user];
+            }];
+            [[NSUserDefaults standardUserDefaults] setValue:[result objectForKey:@"uid"] forKey:@"uid"];
+            [self performSegueWithIdentifier:@"createAccount" sender:self];
+        }
+    }];
     
 }
 - (IBAction)cancelButtonTapped:(UIButton *)sender {

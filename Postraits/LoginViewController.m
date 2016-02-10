@@ -9,6 +9,9 @@
 #import "LoginViewController.h"
 #import "SignupViewController.h"
 #import <Firebase/Firebase.h>
+#import "Constants.h"
+#import "DataService.h"
+
 
 @interface LoginViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;
@@ -20,10 +23,20 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
     UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapFrom:)];
     [self.view addGestureRecognizer:tapGestureRecognizer];
 }
+
+- (void)viewDidAppear:(BOOL)animated{
+
+    if ([[NSUserDefaults standardUserDefaults] stringForKey:@"uid"] && [[[DataService dataService] CURRENT_USER_REF] authData]) {
+        
+        [self performSegueWithIdentifier:@"login" sender:nil];
+    }
+}
+
+
 
 - (void) handleTapFrom: (UITapGestureRecognizer *)recognizer
 {
@@ -32,7 +45,7 @@
 }
 
 - (IBAction)loginButtonTapped:(UIButton *)sender {
-    Firebase *ref = [[Firebase alloc] initWithUrl:@"https://postrait.firebaseio.com"];
+    Firebase *ref = [[Firebase alloc] initWithUrl:BASE_URL];
     [ref authUser:self.emailTextField.text password:self.passwordTextField.text
 withCompletionBlock:^(NSError *error, FAuthData *authData) {
     if (error) {
@@ -45,6 +58,7 @@ withCompletionBlock:^(NSError *error, FAuthData *authData) {
         [self presentViewController:alertController animated:YES completion:nil];
     } else {
         // We are now logged in
+        [[NSUserDefaults standardUserDefaults] setValue:authData.uid forKey:@"uid"];
         [self performSegueWithIdentifier:@"login" sender:self];
     }
 }];
