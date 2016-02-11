@@ -396,7 +396,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6UL-s2-XPQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="tpA-Jk-yhg" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1363.5" y="1662"/>
+            <point key="canvasLocation" x="1429.5" y="1662"/>
         </scene>
         <!--Camera View Controller-->
         <scene sceneID="xcO-fE-yzM">
@@ -737,7 +737,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Arl-TY-xPq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3315" y="1234"/>
+            <point key="canvasLocation" x="3301.5" y="1229"/>
         </scene>
         <!--Photo View Controller-->
         <scene sceneID="XWn-gH-5Ae">
@@ -1149,7 +1149,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9ZE-h6-DTE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3339" y="2026"/>
+            <point key="canvasLocation" x="3339" y="2008"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="mN5-IL-yTO">
@@ -1173,12 +1173,12 @@
         </scene>
     </scenes>
     <resources>
-        <image name="camera_icon" width="512" height="512"/>
-        <image name="home_icon" width="512" height="512"/>
-        <image name="search_icon" width="2400" height="2382"/>
-        <image name="user_icon" width="512" height="512"/>
+        <image name="camera_icon" width="30" height="30"/>
+        <image name="home_icon" width="30" height="30"/>
+        <image name="search_icon" width="30" height="30"/>
+        <image name="user_icon" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="l71-DV-hMx"/>
+        <segue reference="l7x-67-cET"/>
     </inferredMetricsTieBreakers>
 </document>
