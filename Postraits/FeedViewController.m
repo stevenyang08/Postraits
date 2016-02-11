@@ -11,14 +11,17 @@
 #import "TGCameraViewController.h"
 #import "TGCameraColor.h"
 #import "FeedTableViewCell.h"
+#import "CommentTableViewCell.h"
 #import "Photo.h"
+#import "CommentViewController.h"
 
 @interface FeedViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITableViewDelegate, UITableViewDataSource>
 
 @property (strong, nonatomic) IBOutlet UIImageView *photoView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-
 @property NSMutableArray *pictureArray;
+@property NSString *userTest;
+@property NSString *comment1;
 
 @end
 
@@ -26,11 +29,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    self.navigationController.navigationBar.backgroundColor = [UIColor orangeColor];
     self.pictureArray = [NSMutableArray new];
-    
-    self.tableView.rowHeight = 320;
+    self.tableView.allowsSelection = NO;
+    self.tableView.estimatedRowHeight = 40.0;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.userTest = @"myself123";
+    self.comment1 = @"I had the best time ever!!!";
+
+    //self.tableView.rowHeight = 320;
     
     
     // hidden toggle button
@@ -59,30 +65,61 @@
 
 #pragma mark - TableView
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSString *userTest2 = @"deZMan45";
+    NSString *comment2 = @"Dayme son, dat shit dhere is allz chu needz cuz chu know what i'm saying, homie?";
+    if (indexPath.row == 0) {
     FeedTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
 //    cell.photoImage.image = self.photo.image;
     //cell.usernameLabel.text = self.photo.user;
-    cell.usernameLabel.text = @"myself123";
-    return cell;
+        cell.photoImage.image = [UIImage imageNamed:@"empty"];
+        cell.userCommentText.text = [NSString stringWithFormat:@"%@ %@", self.userTest, self.comment1];
+        return cell;
+    }
+    else {
+        CommentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell2" forIndexPath:indexPath];
+        cell.commentTextView.text = [NSString stringWithFormat:@"%@ %@", userTest2, comment2];
+        self.tableView.rowHeight = UITableViewAutomaticDimension;
+        return cell;
+    }
 }
 
-//-(NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index {
-//    return 2;
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 18)];
+
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, tableView.frame.size.width, 18)];
+    [label setFont:[UIFont boldSystemFontOfSize:14]];
+    NSString *string = self.userTest;
+    [label setText:string];
+    [view addSubview:label];
+    [view setBackgroundColor:[UIColor colorWithRed:166/255.0 green:177/255.0 blue:186/255.0 alpha:1.0]]; //your background color...
+    return view;
+}
+
+//-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+//    CGFloat height = 30.0;
+//    return height;
+//}
+//
+//-(CGFloat)tableView:(UITableView *)tableView estimatedHeightForHeaderInSection:(NSInteger)section {
+//    CGFloat height = 30.0;
+//    return height;
 //}
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    //return self.pictureArray.count;
-    return self.pictureArray.count;
+    return 2;
 }
 
-/*
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 4;
+}
+
+
+
  #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
+
  - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
+     
  }
- */
+ 
 
 @end

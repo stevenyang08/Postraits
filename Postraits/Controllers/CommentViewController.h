@@ -11,4 +11,5 @@
 
 @interface CommentViewController : UIViewController
 @property Photo *photo;
+@property (nonatomic) BOOL canGoBack;
 @end

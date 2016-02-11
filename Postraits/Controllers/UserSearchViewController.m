@@ -29,10 +29,18 @@
     self.searchBar.delegate = self;
     self.isFiltered = NO;
     
+    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapFrom:)];
+    [self.view addGestureRecognizer:tapGestureRecognizer];
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated {
         [self loadUsers];
+}
+
+- (void) handleTapFrom: (UITapGestureRecognizer *)recognizer
+{
+    [self.searchBar resignFirstResponder];
 }
 
 -(void)loadUsers {

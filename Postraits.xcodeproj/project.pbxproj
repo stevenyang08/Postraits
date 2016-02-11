@@ -16,6 +16,7 @@
 		7BA860A91C696D8600B13609 /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BA860A81C696D8600B13609 /* Photo.m */; };
 		7BDF92B51C694FC200C78B0F /* FeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BDF92B41C694FC200C78B0F /* FeedViewController.m */; };
 		7BDF92B81C69681F00C78B0F /* FeedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BDF92B71C69681F00C78B0F /* FeedTableViewCell.m */; };
+		7BDFFE261C6C77B6000A967D /* CommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BDFFE251C6C77B6000A967D /* CommentTableViewCell.m */; };
 		81825B8B1C6A707200A8576C /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 81825B8A1C6A707200A8576C /* Constants.m */; };
 		81825B8F1C6A711800A8576C /* DataService.m in Sources */ = {isa = PBXBuildFile; fileRef = 81825B8E1C6A711800A8576C /* DataService.m */; };
 		81825B981C6AAD7200A8576C /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81825B971C6AAD7200A8576C /* CameraViewController.m */; };
@@ -50,6 +51,8 @@
 		7BDF92B41C694FC200C78B0F /* FeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedViewController.m; sourceTree = "<group>"; };
 		7BDF92B61C69681F00C78B0F /* FeedTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedTableViewCell.h; sourceTree = "<group>"; };
 		7BDF92B71C69681F00C78B0F /* FeedTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedTableViewCell.m; sourceTree = "<group>"; };
+		7BDFFE241C6C77B6000A967D /* CommentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentTableViewCell.h; sourceTree = "<group>"; };
+		7BDFFE251C6C77B6000A967D /* CommentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentTableViewCell.m; sourceTree = "<group>"; };
 		81825B891C6A707200A8576C /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Constants.h; path = Utilities/Constants.h; sourceTree = "<group>"; };
 		81825B8A1C6A707200A8576C /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Constants.m; path = Utilities/Constants.m; sourceTree = "<group>"; };
 		81825B8D1C6A711800A8576C /* DataService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataService.h; path = Services/DataService.h; sourceTree = "<group>"; };
@@ -118,8 +121,6 @@
 				BDDEEA6A1C698D7800C15A61 /* LoginViewController.m */,
 				7BDF92B31C694FC200C78B0F /* FeedViewController.h */,
 				7BDF92B41C694FC200C78B0F /* FeedViewController.m */,
-				7BDF92B61C69681F00C78B0F /* FeedTableViewCell.h */,
-				7BDF92B71C69681F00C78B0F /* FeedTableViewCell.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -132,6 +133,10 @@
 				81825B9E1C6BA13000A8576C /* ImageCollectionViewCell.m */,
 				81825BAC1C6BF63800A8576C /* PhotoShowTableViewCell.h */,
 				81825BAD1C6BF63800A8576C /* PhotoShowTableViewCell.m */,
+				7BDF92B61C69681F00C78B0F /* FeedTableViewCell.h */,
+				7BDF92B71C69681F00C78B0F /* FeedTableViewCell.m */,
+				7BDFFE241C6C77B6000A967D /* CommentTableViewCell.h */,
+				7BDFFE251C6C77B6000A967D /* CommentTableViewCell.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -345,6 +350,7 @@
 				BDDEEA6B1C698D7800C15A61 /* LoginViewController.m in Sources */,
 				81825B8F1C6A711800A8576C /* DataService.m in Sources */,
 				7B67A6901C66DDB6009E89CE /* AppDelegate.m in Sources */,
+				7BDFFE261C6C77B6000A967D /* CommentTableViewCell.m in Sources */,
 				81825BAE1C6BF63800A8576C /* PhotoShowTableViewCell.m in Sources */,
 				7B67A68D1C66DDB6009E89CE /* main.m in Sources */,
 				81825BAB1C6BB8CD00A8576C /* User.m in Sources */,

@@ -8,6 +8,7 @@
 
 #import "CommentViewController.h"
 #import "Comment.h"
+#import "FeedViewController.h"
 
 @interface CommentViewController () <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
 
@@ -15,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *commentTextField;
 @property NSMutableArray *comments;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomConstraint;
+@property (weak, nonatomic) IBOutlet UIButton *backButton;
 
 @end
 
@@ -22,6 +24,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+//    self.backButton.hidden = YES;
+//    if (self.canGoBack) {
+//        self.backButton.hidden = NO;
+//    } else {
+//        self.backButton.hidden = YES;
+//    }
+    //[self.commentTextField becomeFirstResponder];
     
     self.comments = [NSMutableArray new];
     
@@ -113,5 +122,10 @@
     
     return YES;
 }
+
+- (IBAction)backButtonTapped:(UIButton *)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 
 @end

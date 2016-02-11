@@ -11,5 +11,10 @@
 @interface FeedTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *photoImage;
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *likesLabel;
+@property NSInteger num;
+@property (nonatomic)BOOL didLike;
+@property (weak, nonatomic) IBOutlet UITextView *userCommentText;
+@property (weak, nonatomic) IBOutlet UIButton *commentButton;
 
 @end
