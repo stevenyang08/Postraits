@@ -7,7 +7,7 @@
 //
 
 #import "FeedTableViewCell.h"
-#import "CustomClass.h"
+#import "Photo.h"
 
 @implementation FeedTableViewCell
 

@@ -8,9 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "DataService.h"
 
-@interface CustomClass : NSObject
-@property NSString *user;
+@interface Photo : NSObject
+
+@property NSString *key;
 @property UIImage *image;
-
 @end

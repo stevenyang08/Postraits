@@ -13,7 +13,7 @@
 		7B67A6991C66DDB6009E89CE /* Postraits.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7B67A6971C66DDB6009E89CE /* Postraits.xcdatamodeld */; };
 		7B67A69B1C66DDB6009E89CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7B67A69A1C66DDB6009E89CE /* Assets.xcassets */; };
 		7B67A69E1C66DDB6009E89CE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B67A69C1C66DDB6009E89CE /* LaunchScreen.storyboard */; };
-		7BA860A91C696D8600B13609 /* CustomClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BA860A81C696D8600B13609 /* CustomClass.m */; };
+		7BA860A91C696D8600B13609 /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BA860A81C696D8600B13609 /* Photo.m */; };
 		7BDF92B51C694FC200C78B0F /* FeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BDF92B41C694FC200C78B0F /* FeedViewController.m */; };
 		7BDF92B81C69681F00C78B0F /* FeedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BDF92B71C69681F00C78B0F /* FeedTableViewCell.m */; };
 		81825B8B1C6A707200A8576C /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 81825B8A1C6A707200A8576C /* Constants.m */; };
@@ -24,6 +24,9 @@
 		81825BA21C6BB01900A8576C /* PhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81825BA11C6BB01900A8576C /* PhotoViewController.m */; };
 		81825BA51C6BB07B00A8576C /* CommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81825BA41C6BB07B00A8576C /* CommentViewController.m */; };
 		81825BA81C6BB14000A8576C /* UserSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81825BA71C6BB14000A8576C /* UserSearchViewController.m */; };
+		81825BAB1C6BB8CD00A8576C /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 81825BAA1C6BB8CD00A8576C /* User.m */; };
+		81825BAE1C6BF63800A8576C /* PhotoShowTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 81825BAD1C6BF63800A8576C /* PhotoShowTableViewCell.m */; };
+		81825BB11C6C226C00A8576C /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = 81825BB01C6C226C00A8576C /* Comment.m */; };
 		BDDEEA6B1C698D7800C15A61 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BDDEEA6A1C698D7800C15A61 /* LoginViewController.m */; };
 		BDDEEA6E1C698D9800C15A61 /* SignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BDDEEA6D1C698D9800C15A61 /* SignupViewController.m */; };
 		D4045CAE33A8E2BEE4413EFC /* libPods-Postraits.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC2666E4AC1CCE8EA84C8570 /* libPods-Postraits.a */; };
@@ -41,8 +44,8 @@
 		7B67A69A1C66DDB6009E89CE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7B67A69D1C66DDB6009E89CE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7B67A69F1C66DDB6009E89CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7BA860A71C696D8600B13609 /* CustomClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomClass.h; sourceTree = "<group>"; };
-		7BA860A81C696D8600B13609 /* CustomClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomClass.m; sourceTree = "<group>"; };
+		7BA860A71C696D8600B13609 /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Photo.h; sourceTree = "<group>"; };
+		7BA860A81C696D8600B13609 /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Photo.m; sourceTree = "<group>"; };
 		7BDF92B31C694FC200C78B0F /* FeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedViewController.h; sourceTree = "<group>"; };
 		7BDF92B41C694FC200C78B0F /* FeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedViewController.m; sourceTree = "<group>"; };
 		7BDF92B61C69681F00C78B0F /* FeedTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedTableViewCell.h; sourceTree = "<group>"; };
@@ -63,6 +66,12 @@
 		81825BA41C6BB07B00A8576C /* CommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommentViewController.m; path = Controllers/CommentViewController.m; sourceTree = "<group>"; };
 		81825BA61C6BB14000A8576C /* UserSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserSearchViewController.h; path = Controllers/UserSearchViewController.h; sourceTree = "<group>"; };
 		81825BA71C6BB14000A8576C /* UserSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserSearchViewController.m; path = Controllers/UserSearchViewController.m; sourceTree = "<group>"; };
+		81825BA91C6BB8CD00A8576C /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = Models/User.h; sourceTree = "<group>"; };
+		81825BAA1C6BB8CD00A8576C /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = Models/User.m; sourceTree = "<group>"; };
+		81825BAC1C6BF63800A8576C /* PhotoShowTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PhotoShowTableViewCell.h; path = Views/PhotoShowTableViewCell.h; sourceTree = "<group>"; };
+		81825BAD1C6BF63800A8576C /* PhotoShowTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PhotoShowTableViewCell.m; path = Views/PhotoShowTableViewCell.m; sourceTree = "<group>"; };
+		81825BAF1C6C226C00A8576C /* Comment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Comment.h; path = Models/Comment.h; sourceTree = "<group>"; };
+		81825BB01C6C226C00A8576C /* Comment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Comment.m; path = Models/Comment.m; sourceTree = "<group>"; };
 		BDDEEA691C698D7800C15A61 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		BDDEEA6A1C698D7800C15A61 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		BDDEEA6C1C698D9800C15A61 /* SignupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignupViewController.h; sourceTree = "<group>"; };
@@ -121,6 +130,8 @@
 				7B67A6941C66DDB6009E89CE /* Main.storyboard */,
 				81825B9D1C6BA13000A8576C /* ImageCollectionViewCell.h */,
 				81825B9E1C6BA13000A8576C /* ImageCollectionViewCell.m */,
+				81825BAC1C6BF63800A8576C /* PhotoShowTableViewCell.h */,
+				81825BAD1C6BF63800A8576C /* PhotoShowTableViewCell.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -191,8 +202,12 @@
 		81825B991C6AB16E00A8576C /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				7BA860A71C696D8600B13609 /* CustomClass.h */,
-				7BA860A81C696D8600B13609 /* CustomClass.m */,
+				81825BA91C6BB8CD00A8576C /* User.h */,
+				81825BAA1C6BB8CD00A8576C /* User.m */,
+				7BA860A71C696D8600B13609 /* Photo.h */,
+				7BA860A81C696D8600B13609 /* Photo.m */,
+				81825BAF1C6C226C00A8576C /* Comment.h */,
+				81825BB01C6C226C00A8576C /* Comment.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -330,9 +345,11 @@
 				BDDEEA6B1C698D7800C15A61 /* LoginViewController.m in Sources */,
 				81825B8F1C6A711800A8576C /* DataService.m in Sources */,
 				7B67A6901C66DDB6009E89CE /* AppDelegate.m in Sources */,
+				81825BAE1C6BF63800A8576C /* PhotoShowTableViewCell.m in Sources */,
 				7B67A68D1C66DDB6009E89CE /* main.m in Sources */,
+				81825BAB1C6BB8CD00A8576C /* User.m in Sources */,
 				BDDEEA6E1C698D9800C15A61 /* SignupViewController.m in Sources */,
-				7BA860A91C696D8600B13609 /* CustomClass.m in Sources */,
+				7BA860A91C696D8600B13609 /* Photo.m in Sources */,
 				81825B981C6AAD7200A8576C /* CameraViewController.m in Sources */,
 				7B67A6991C66DDB6009E89CE /* Postraits.xcdatamodeld in Sources */,
 				7BDF92B81C69681F00C78B0F /* FeedTableViewCell.m in Sources */,
@@ -343,6 +360,7 @@
 				81825B9F1C6BA13000A8576C /* ImageCollectionViewCell.m in Sources */,
 				81825B8B1C6A707200A8576C /* Constants.m in Sources */,
 				81825BA21C6BB01900A8576C /* PhotoViewController.m in Sources */,
+				81825BB11C6C226C00A8576C /* Comment.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

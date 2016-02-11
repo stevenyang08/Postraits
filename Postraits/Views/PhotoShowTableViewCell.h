@@ -1,5 +1,5 @@
 //
-//  PhotoViewController.h
+//  PhotoShowTableViewCell.h
 //  Postraits
 //
 //  Created by Wong You Jing on 10/02/2016.
@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Photo.h"
 
-@interface PhotoViewController : UIViewController
-@property Photo *photo;
+@interface PhotoShowTableViewCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UIImageView *photoView;
+
 @end
