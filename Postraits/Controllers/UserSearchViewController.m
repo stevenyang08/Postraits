@@ -37,10 +37,17 @@
 
 -(void)loadUsers {
     [[[Firebase alloc] initWithUrl:@"https://postrait.firebaseio.com/users"] observeEventType:FEventTypeChildAdded withBlock:^(FDataSnapshot *snapshot) {
-        [self.allUsers insertObject:[snapshot.value objectForKey:@"username"] atIndex:0];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.tableView reloadData];
-        });
+        NSString *username = [snapshot.value objectForKey:@"username"];
+        
+        if (username != nil) {
+            [self.allUsers insertObject:username atIndex:0];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.tableView reloadData];
+            });
+        }else{
+            NSLog(@"%@", snapshot.value);
+        
+        }
     }];
 }
 
