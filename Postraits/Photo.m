@@ -6,8 +6,8 @@
 //  Copyright © 2016 Le Mont. All rights reserved.
 //
 
-#import "CustomClass.h"
+#import "Photo.h"
 
-@implementation CustomClass
+@implementation Photo
 
 @end

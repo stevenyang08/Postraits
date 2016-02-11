@@ -11,4 +11,12 @@
 
 @implementation ImageCollectionViewCell
 
+- (void)awakeFromNib
+{
+    [super awakeFromNib];
+    
+    self.contentView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    self.contentView.translatesAutoresizingMaskIntoConstraints = YES;
+}
+
 @end

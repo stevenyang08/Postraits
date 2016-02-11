@@ -18,6 +18,7 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;
+@property (weak, nonatomic) IBOutlet UITextField *usernameTextField;
 
 @end
 
@@ -39,6 +40,7 @@
 - (IBAction)createAccountButtonTapped:(UIButton *)sender {
     NSString *email = self.emailTextField.text;
     NSString *password = self.passwordTextField.text;
+    NSString *username = self.usernameTextField.text;
     
     Firebase *ref = [[Firebase alloc] initWithUrl:BASE_URL];
     [ref createUser:email password:password withValueCompletionBlock:^(NSError *error, NSDictionary *result) {
@@ -53,7 +55,7 @@
             [self presentViewController:alertController animated:YES completion:nil];
         } else {
             [[[DataService dataService] BASE_REF] authUser:email password:password withCompletionBlock:^(NSError *error, FAuthData *authData) {
-                NSDictionary *user = [[NSDictionary alloc] initWithObjects:@[authData.provider, email] forKeys:@[@"provider", @"email"]];
+                NSDictionary *user = [[NSDictionary alloc] initWithObjects:@[authData.provider, email, username] forKeys:@[@"provider", @"email", @"username"]];
                 
                 [[DataService dataService] createNewAccount:authData.uid user:user];
             }];

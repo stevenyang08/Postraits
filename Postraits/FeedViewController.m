@@ -11,7 +11,7 @@
 #import "TGCameraViewController.h"
 #import "TGCameraColor.h"
 #import "FeedTableViewCell.h"
-#import "CustomClass.h"
+#import "Photo.h"
 
 @interface FeedViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITableViewDelegate, UITableViewDataSource>
 

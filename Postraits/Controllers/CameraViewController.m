@@ -9,13 +9,13 @@
 #import "CameraViewController.h"
 #import "TGCameraViewController.h"
 #import "DataService.h"
-#import "CustomClass.h"
+#import "Photo.h"
 
 
 
 @interface CameraViewController () <TGCameraDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
-@property CustomClass *photo;
+@property Photo *photo;
 
 @end
 
@@ -51,22 +51,7 @@
 
 - (void)cameraDidTakePhoto:(UIImage *)image
 {
-    NSData *imageData = UIImageJPEGRepresentation(image, 1.0);
-    NSString *base64String = [imageData base64EncodedStringWithOptions:0];
-    
-    NSDictionary *quoteString = [[NSDictionary alloc] initWithObjects:@[base64String] forKeys:@[@"string"]];
-    
-    
-    Firebase *imageRef = [[DataService dataService] IMAGE_REF];
-    Firebase *newImageRef = [imageRef childByAutoId];
-    
-    [newImageRef setValue:quoteString withCompletionBlock:^(NSError *error, Firebase *ref) {
-        if(!error){
-            NSDictionary *updatedImages = @{ref.key: [NSNumber numberWithBool:true]};
-            [[[[DataService dataService] CURRENT_USER_REF] childByAppendingPath:@"images"] updateChildValues:updatedImages];
-        }
-    }];
-    
+    [[DataService dataService] uploadImageToFireBase:image];
     
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -82,7 +67,8 @@
 - (void)imagePickerController:(UIImagePickerController *)picker
 didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-    self.photo.image = [TGAlbum imageWithMediaInfo:info];
+    UIImage *image = [TGAlbum imageWithMediaInfo:info];
+    [[DataService dataService] uploadImageToFireBase:image];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
