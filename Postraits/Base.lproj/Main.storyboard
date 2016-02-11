@@ -838,7 +838,8 @@
                                                     <exclude reference="vev-gX-DHs"/>
                                                 </mask>
                                             </variation>
-                                            <variation key="widthClass=compact">
+                                            <variation key="widthClass=compact" ambiguous="YES">
+                                                <rect key="frame" x="0.0" y="0.0" width="400" height="400"/>
                                                 <mask key="subviews">
                                                     <include reference="bhj-oe-FTq"/>
                                                 </mask>
@@ -1246,8 +1247,7 @@
                                                         <exclude reference="pyO-J1-TUN"/>
                                                     </mask>
                                                 </variation>
-                                                <variation key="widthClass=compact" misplaced="YES">
-                                                    <rect key="frame" x="235" y="49" width="48" height="30"/>
+                                                <variation key="widthClass=compact">
                                                     <mask key="constraints">
                                                         <include reference="X6Z-wK-FIB"/>
                                                         <include reference="pyO-J1-TUN"/>
