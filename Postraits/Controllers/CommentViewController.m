@@ -10,11 +10,10 @@
 #import "Comment.h"
 #import "FeedViewController.h"
 
-@interface CommentViewController () <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
+@interface CommentViewController () <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, PhotoDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UITextField *commentTextField;
-@property NSMutableArray *comments;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomConstraint;
 @property (weak, nonatomic) IBOutlet UIButton *backButton;
 
@@ -24,35 +23,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    self.backButton.hidden = YES;
-//    if (self.canGoBack) {
-//        self.backButton.hidden = NO;
-//    } else {
-//        self.backButton.hidden = YES;
-//    }
-    //[self.commentTextField becomeFirstResponder];
-    
-    self.comments = [NSMutableArray new];
-    
-    
-    [[[[DataService dataService] IMAGE_REF] childByAppendingPath:[NSString stringWithFormat:@"%@/comments", self.photo.key]] observeEventType:FEventTypeChildAdded withBlock:^(FDataSnapshot *snapshot) {
-        
-        NSString *commentKey = snapshot.key;
-        
-        [[[[DataService dataService] COMMENT_REF] childByAppendingPath:commentKey] observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
-            
-            if (snapshot.value != nil) {
-                Comment *comment = [Comment new];
-                comment.body = [snapshot.value objectForKey:@"body"];
-                [self.comments addObject:comment];
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [self.tableView reloadData];
-                });
-            }
-        }];
-    }];
-    
-    
     
     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
     [center addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
@@ -60,10 +30,16 @@
     self.view.translatesAutoresizingMaskIntoConstraints = YES;
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.photo.delegate = self;
+    [self.tableView reloadData];
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     
-    Comment *comment = self.comments[indexPath.row];
+    Comment *comment = self.photo.comments[indexPath.row];
     
     cell.textLabel.text = comment.body;
     
@@ -71,7 +47,7 @@
 }
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.comments.count;
+    return self.photo.comments.count;
 }
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
@@ -134,5 +110,8 @@
     return YES;
 }
 
+- (void)photoPropertyDidChange{
+    [self.tableView reloadData];
+}
 
 @end

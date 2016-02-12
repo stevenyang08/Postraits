@@ -12,7 +12,7 @@
 #import "CommentViewController.h"
 #import "Comment.h"
 
-@interface PhotoViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface PhotoViewController () <UITableViewDataSource, UITableViewDelegate, PhotoDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property NSString *email;
@@ -23,41 +23,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tableView.rowHeight = UITableViewAutomaticDimension;
-    self.tableView.estimatedRowHeight = 80;
-    
-    
-    [self loadUserAndComments];
-    
+    self.tableView.estimatedRowHeight = 80;    
 }
 
-- (void)loadUserAndComments{
-    self.photo.comments = [NSMutableArray new];
-    [[[[DataService dataService] IMAGE_REF] childByAppendingPath:self.photo.key] observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
-        NSString *userId = [snapshot.value objectForKey:@"user"];
-        [[[[DataService dataService] USER_REF] childByAppendingPath:[NSString stringWithFormat:@"/%@", userId]] observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
-            self.email = [snapshot.value objectForKey:@"email"];
-            [self.tableView reloadData];
-        }];
-        
-        NSDictionary *comments = [snapshot.value objectForKey:@"comments"];
-        if (comments != nil) {
-            for (NSString *comment in comments) {
-                [[[[DataService dataService] COMMENT_REF] childByAppendingPath:comment] observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
-                    if(snapshot.value != [NSNull new]){
-                        Comment *comment = [Comment new];
-                        
-                        NSString *username = [snapshot.value objectForKey:@"body"];
-                        comment.body = username;
-                        [self.photo.comments addObject:comment];
-                        
-                        [self.tableView reloadData];
-                    }
-                }];
-            }
-        }
-    }];
-    
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.photo setDelegate:self];
+    [self.tableView reloadData];
 }
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0) {
@@ -92,10 +66,10 @@
     
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(50, 10, self.view.bounds.size.width -30, 30)];
     [label.font fontWithSize:10];
-    if (self.email == nil) {
+    if (self.photo.user.username == nil) {
         label.text = @"";
     }else{
-        label.text = self.email;
+        label.text = self.photo.user.username;
     }
     
     [header addSubview:label];
@@ -107,5 +81,10 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     CommentViewController *destination = [segue destinationViewController];
     destination.photo = self.photo;
+}
+
+#pragma mark - Photo Delegate
+- (void)photoPropertyDidChange {
+    [self.tableView reloadData];
 }
 @end

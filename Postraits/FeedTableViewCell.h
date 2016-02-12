@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DataService.h"
+#import "Photo.h"
 
 @interface FeedTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *photoImage;
@@ -16,5 +18,7 @@
 @property (nonatomic)BOOL didLike;
 @property (weak, nonatomic) IBOutlet UITextView *userCommentText;
 @property (weak, nonatomic) IBOutlet UIButton *commentButton;
+@property (weak, nonatomic) IBOutlet UIButton *likeButton;
+@property Photo *photo;
 
 @end

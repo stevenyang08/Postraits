@@ -28,6 +28,7 @@
 		81825BAB1C6BB8CD00A8576C /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 81825BAA1C6BB8CD00A8576C /* User.m */; };
 		81825BAE1C6BF63800A8576C /* PhotoShowTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 81825BAD1C6BF63800A8576C /* PhotoShowTableViewCell.m */; };
 		81825BB11C6C226C00A8576C /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = 81825BB01C6C226C00A8576C /* Comment.m */; };
+		818D97C61C6DE3E200606F40 /* FriendsFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 818D97C51C6DE3E200606F40 /* FriendsFeedViewController.m */; };
 		BDDEEA6B1C698D7800C15A61 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BDDEEA6A1C698D7800C15A61 /* LoginViewController.m */; };
 		BDDEEA6E1C698D9800C15A61 /* SignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BDDEEA6D1C698D9800C15A61 /* SignupViewController.m */; };
 		D4045CAE33A8E2BEE4413EFC /* libPods-Postraits.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC2666E4AC1CCE8EA84C8570 /* libPods-Postraits.a */; };
@@ -75,6 +76,8 @@
 		81825BAD1C6BF63800A8576C /* PhotoShowTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PhotoShowTableViewCell.m; path = Views/PhotoShowTableViewCell.m; sourceTree = "<group>"; };
 		81825BAF1C6C226C00A8576C /* Comment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Comment.h; path = Models/Comment.h; sourceTree = "<group>"; };
 		81825BB01C6C226C00A8576C /* Comment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Comment.m; path = Models/Comment.m; sourceTree = "<group>"; };
+		818D97C41C6DE3E200606F40 /* FriendsFeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FriendsFeedViewController.h; path = Controllers/FriendsFeedViewController.h; sourceTree = "<group>"; };
+		818D97C51C6DE3E200606F40 /* FriendsFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FriendsFeedViewController.m; path = Controllers/FriendsFeedViewController.m; sourceTree = "<group>"; };
 		BDDEEA691C698D7800C15A61 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		BDDEEA6A1C698D7800C15A61 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		BDDEEA6C1C698D9800C15A61 /* SignupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignupViewController.h; sourceTree = "<group>"; };
@@ -105,6 +108,8 @@
 		7B27E8B41C66EF1700A1AD45 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				818D97C41C6DE3E200606F40 /* FriendsFeedViewController.h */,
+				818D97C51C6DE3E200606F40 /* FriendsFeedViewController.m */,
 				81825B9A1C6AD26200A8576C /* ProfileViewController.h */,
 				81825B9B1C6AD26200A8576C /* ProfileViewController.m */,
 				81825BA01C6BB01900A8576C /* PhotoViewController.h */,
@@ -355,6 +360,7 @@
 				7B67A68D1C66DDB6009E89CE /* main.m in Sources */,
 				81825BAB1C6BB8CD00A8576C /* User.m in Sources */,
 				BDDEEA6E1C698D9800C15A61 /* SignupViewController.m in Sources */,
+				818D97C61C6DE3E200606F40 /* FriendsFeedViewController.m in Sources */,
 				7BA860A91C696D8600B13609 /* Photo.m in Sources */,
 				81825B981C6AAD7200A8576C /* CameraViewController.m in Sources */,
 				7B67A6991C66DDB6009E89CE /* Postraits.xcdatamodeld in Sources */,

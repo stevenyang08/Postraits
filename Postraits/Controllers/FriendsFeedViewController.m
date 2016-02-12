@@ -1,12 +1,12 @@
 //
-//  FeedViewController.m
+//  FriendsFeedViewController.m
 //  Postraits
 //
-//  Created by Steven Yang on 2/8/16.
+//  Created by Wong You Jing on 12/02/2016.
 //  Copyright © 2016 Le Mont. All rights reserved.
 //
 
-#import "FeedViewController.h"
+#import "FriendsFeedViewController.h"
 #import "FeedTableViewCell.h"
 #import "CommentTableViewCell.h"
 #import "Photo.h"
@@ -14,21 +14,22 @@
 #import "CommentViewController.h"
 #import "PhotoViewController.h"
 
-@interface FeedViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITableViewDelegate, UITableViewDataSource, PhotoDelegate>
+@interface FriendsFeedViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITableViewDelegate, UITableViewDataSource, PhotoDelegate, UserDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property NSMutableArray *pictureArray;
-
+@property User *user;
+@property NSMutableSet *followingsImagesId;
 @end
 
-@implementation FeedViewController
+@implementation FriendsFeedViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.pictureArray = [NSMutableArray new];
     self.tableView.estimatedRowHeight = 400.0;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
-    
+    self.followingsImagesId = [NSMutableSet new];
     [self loadPhotos];
 }
 
@@ -41,13 +42,34 @@
 
 - (void) loadPhotos {
     self.pictureArray = [NSMutableArray new];
-    FQuery *queryRef = [[[[DataService dataService] IMAGE_REF] queryOrderedByKey] queryLimitedToLast:20];
-    [queryRef observeEventType:FEventTypeChildAdded withBlock:^(FDataSnapshot *snapshot) {
-        Photo *photo = [[Photo alloc] initWithKey:snapshot.key];
-        photo.delegate = self;
-        [self.pictureArray insertObject:photo atIndex:0];
+    NSLog(@"happening test");
+    self.user = [[User alloc]initWithKey:[User currentUserId]];
+    self.user.delegate = self;
+}
+
+- (void)userPropertyDidChange:(User *)user{
+    NSLog(@"happening");
+    NSLog(@"%@", user.followings);
+    if([user.key isEqualToString:[User currentUserId]]){
+        for (NSString *followingId in user.followings) {
+            NSLog(@"creating user");
+            User *user = [[User alloc] initWithKey:followingId];
+            user.delegate = self;
+        }
+    }else{
+        NSLog(@"key: %@, photoID %@", user.key, user.photoIds);
+        [self.followingsImagesId addObjectsFromArray:user.photoIds];
+        NSLog(@"followingsImagesId %@", self.followingsImagesId);
+        self.pictureArray = [NSMutableArray new];
+        for (NSString *photoId in self.followingsImagesId) {
+            Photo *photo = [[Photo alloc] initWithKey:photoId];
+            photo.delegate = self;
+            [self.pictureArray addObject:photo];
+        }
+        NSLog(@"pictureArray: %@", self.pictureArray);
         [self.tableView reloadData];
-    }];
+    }
+    
 }
 
 #pragma mark - TableView
@@ -88,7 +110,7 @@
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 50)];
     
     Photo *photo = [self.pictureArray objectAtIndex:section];
-
+    
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, tableView.frame.size.width, 50)];
     [label setFont:[UIFont boldSystemFontOfSize:14]];
     NSString *string = photo.user.username;
@@ -114,28 +136,28 @@
 
 
 
- #pragma mark - Navigation
+#pragma mark - Navigation
 
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-     if ([segue.identifier isEqualToString:@"PhotoShowSegue"]) {
-         PhotoViewController *destination = segue.destinationViewController;
-         FeedTableViewCell *cell = sender;
-         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-         Photo *photo = self.pictureArray[indexPath.section];
-         destination.photo = photo;
-     }else if ([segue.identifier isEqualToString:@"CommentIndexSegue"]){
-         CommentViewController *destination = segue.destinationViewController;
-         UIButton *commentButton = sender;
-         Photo *photo = self.pictureArray[commentButton.tag];
-         destination.photo = photo;
-     }
- }
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"PhotoShowSegue"]) {
+        PhotoViewController *destination = segue.destinationViewController;
+        FeedTableViewCell *cell = sender;
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+        Photo *photo = self.pictureArray[indexPath.section];
+        destination.photo = photo;
+    }else if ([segue.identifier isEqualToString:@"CommentIndexSegue"]){
+        CommentViewController *destination = segue.destinationViewController;
+        UIButton *commentButton = sender;
+        Photo *photo = self.pictureArray[commentButton.tag];
+        destination.photo = photo;
+    }
+}
 
 #pragma mark - Photo Delegate
 
 - (void)photoPropertyDidChange {
     [self.tableView reloadData];
 }
- 
+
 
 @end

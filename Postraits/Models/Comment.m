@@ -8,6 +8,18 @@
 
 #import "Comment.h"
 
+
 @implementation Comment
+
+- (instancetype)initWithKey:(NSString *)key{
+    self = [super init];
+    if (self) {
+        [[[[DataService dataService] COMMENT_REF] childByAppendingPath:key] observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
+            self.body = [snapshot.value objectForKey:@"body"];
+            [self.delegate commentPropertyDidChange];
+        }];
+    }
+    return self;
+}
 
 @end
