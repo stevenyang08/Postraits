@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "DataService.h"
+#import "User.h"
 
 @protocol CommentDelegate <NSObject>
 
@@ -19,7 +20,10 @@
 
 @property id <CommentDelegate> delegate;
 @property NSString *body;
+@property NSString *key;
+@property User *user;
 
 - (instancetype)initWithKey:(NSString *)key;
+- (NSString *)bodyWithAuthor;
 
 @end

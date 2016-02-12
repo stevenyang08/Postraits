@@ -42,7 +42,7 @@
     }else{
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ActionCell"];
         Comment *comment = [self.photo.comments objectAtIndex:(indexPath.row - 1)];
-        cell.textLabel.text = comment.body;
+        cell.textLabel.text = comment.bodyWithAuthor;
         return cell;
     }
 }

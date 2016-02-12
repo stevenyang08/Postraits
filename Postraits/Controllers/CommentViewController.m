@@ -41,7 +41,7 @@
     
     Comment *comment = self.photo.comments[indexPath.row];
     
-    cell.textLabel.text = comment.body;
+    cell.textLabel.text = comment.bodyWithAuthor;
     
     return cell;
 }

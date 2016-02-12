@@ -60,10 +60,12 @@
     
     if (self.user == nil) {
         self.user = [[User alloc] initWithKey:[User currentUserId]];
-        self.user.delegate = self;
-        self.user.key = [[NSUserDefaults standardUserDefaults] stringForKey:@"uid"];
+    }else{
+        self.user = [[User alloc] initWithKey:self.user.key];
     }
+    self.user.delegate = self;
     
+    [self userPropertyDidChange:self.user];
     
     [[[[[DataService dataService] USER_REF] childByAppendingPath:self.user.key] childByAppendingPath:@"images"] observeEventType:FEventTypeChildAdded withBlock:^(FDataSnapshot *snapshot) {
         

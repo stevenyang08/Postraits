@@ -97,7 +97,7 @@
     else {
         CommentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell2" forIndexPath:indexPath];
         Comment *comment = [photo.comments objectAtIndex:(row - 1)];
-        cell.textLabel.text = comment.body;
+        cell.textLabel.text = comment.bodyWithAuthor;
         cell.textLabel.numberOfLines = 0;
         
         [cell.contentView setNeedsLayout];

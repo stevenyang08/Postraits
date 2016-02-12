@@ -597,7 +597,7 @@
             </objects>
             <point key="canvasLocation" x="3949.5" y="494"/>
         </scene>
-        <!--Postraits-->
+        <!--Postrait-->
         <scene sceneID="OCw-bS-FIs">
             <objects>
                 <viewController automaticallyAdjustsScrollViewInsets="NO" id="afi-hb-jHz" customClass="FeedViewController" sceneMemberID="viewController">
@@ -856,7 +856,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Postraits" id="EIG-LU-MuV"/>
+                    <navigationItem key="navigationItem" title="Postrait" id="EIG-LU-MuV"/>
                     <connections>
                         <outlet property="tableView" destination="YSQ-N9-vYC" id="dRc-Bq-bu8"/>
                     </connections>
@@ -2005,7 +2005,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="l7x-67-cET"/>
         <segue reference="exF-nc-wUO"/>
-        <segue reference="QJf-bH-Glb"/>
-        <segue reference="3F3-7I-pUc"/>
+        <segue reference="4U0-2Z-P0e"/>
+        <segue reference="PdP-E6-YIE"/>
     </inferredMetricsTieBreakers>
 </document>

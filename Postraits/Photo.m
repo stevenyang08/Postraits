@@ -46,12 +46,16 @@
                 [self.likes addObject:userId];
             }
             
-            for (NSString *commentId in [[snapshot.value objectForKey:@"comments"] allKeys]) {
+            NSMutableArray *commentArray = [[[snapshot.value objectForKey:@"comments"] allKeys] mutableCopy];
+            NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"self" ascending:YES];
+            [commentArray sortUsingDescriptors:[NSArray arrayWithObject:sort]];
+            
+            for (NSString *commentId in commentArray) {
                 Comment *comment = [[Comment alloc] initWithKey:commentId];
                 comment.delegate = self;
                 [self.comments addObject:comment];
             }
-            [self.delegate photoPropertyDidChange];
+            
             
             NSNumber *likesCount = [snapshot.value objectForKey:@"likesCount"];
             
@@ -60,6 +64,8 @@
             }else{
                 self.likesCount = [likesCount intValue];
             }
+            
+            [self.delegate photoPropertyDidChange];
             
         }];
     }

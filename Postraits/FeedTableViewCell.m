@@ -23,7 +23,6 @@
 }
 
 - (IBAction)likeButtonTapped:(UIButton *)sender {
-    UIButton *button = (UIButton *)sender;
     
     [self.photo setLike];
     
