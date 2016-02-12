@@ -1946,7 +1946,7 @@
                                             <outlet property="likeButton" destination="2FM-te-ghR" id="io5-OP-Axa"/>
                                             <outlet property="likesLabel" destination="e1v-os-5B0" id="21f-Rk-djW"/>
                                             <outlet property="photoImage" destination="XEM-W2-Bkd" id="B7U-W6-xZw"/>
-                                            <segue destination="WFq-1e-Exn" kind="show" id="Ln8-Pj-xwc"/>
+                                            <segue destination="WFq-1e-Exn" kind="show" identifier="FriendPhotoShowSegue" id="Ln8-Pj-xwc"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell2" rowHeight="40" id="j0n-Sb-GIG" customClass="CommentTableViewCell">
@@ -2010,7 +2010,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="l7x-67-cET"/>
         <segue reference="exF-nc-wUO"/>
-        <segue reference="4U0-2Z-P0e"/>
-        <segue reference="PdP-E6-YIE"/>
+        <segue reference="Ln8-Pj-xwc"/>
+        <segue reference="3F3-7I-pUc"/>
     </inferredMetricsTieBreakers>
 </document>

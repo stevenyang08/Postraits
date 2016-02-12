@@ -140,13 +140,14 @@
 #pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"PhotoShowSegue"]) {
+    
+    if ([segue.identifier isEqualToString:@"FriendPhotoShowSegue"]) {
         PhotoViewController *destination = segue.destinationViewController;
         FeedTableViewCell *cell = sender;
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
         Photo *photo = self.pictureArray[indexPath.section];
         destination.photo = photo;
-    }else if ([segue.identifier isEqualToString:@"CommentIndexSegue"]){
+    }else if ([segue.identifier isEqualToString:@"FriendCommentIndexSegue"]){
         CommentViewController *destination = segue.destinationViewController;
         UIButton *commentButton = sender;
         Photo *photo = self.pictureArray[commentButton.tag];
