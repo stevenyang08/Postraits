@@ -29,6 +29,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.navigationController.navigationBar setBarTintColor:[UIColor orangeColor]];
     self.userImages = [NSMutableArray new];
     self.followButton.hidden = YES;
     

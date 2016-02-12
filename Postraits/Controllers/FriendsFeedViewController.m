@@ -26,6 +26,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.navigationController.navigationBar setBarTintColor:[UIColor orangeColor]];
     self.pictureArray = [NSMutableArray new];
     self.tableView.estimatedRowHeight = 400.0;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
@@ -116,7 +117,7 @@
     NSString *string = photo.user.username;
     [label setText:string];
     [view addSubview:label];
-    [view setBackgroundColor:[UIColor colorWithRed:166/255.0 green:177/255.0 blue:186/255.0 alpha:0.8]]; //your background color...
+    [view setBackgroundColor:[UIColor colorWithRed:0/255.0 green:100/255.0 blue:200/255.0 alpha:0.8]]; //your background color...
     return view;
 }
 

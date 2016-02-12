@@ -24,7 +24,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    [self.navigationController.navigationBar setBarTintColor:[UIColor orangeColor]];
     self.allUsers = [NSMutableArray new];
     self.filteredUsers = [NSMutableArray new];
     self.searchBar.delegate = self;

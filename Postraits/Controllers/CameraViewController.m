@@ -14,6 +14,7 @@
 
 
 @interface CameraViewController () <TGCameraDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+@property (weak, nonatomic) IBOutlet UIButton *takePhoto;
 
 @property Photo *photo;
 
@@ -23,7 +24,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.takePhoto.backgroundColor = [UIColor colorWithRed:0/255.0 green:100/255.0 blue:200/255.0  alpha:1.0];
+
     [TGCamera setOption:kTGCameraOptionSaveImageToAlbum value:[NSNumber numberWithBool:YES]];
 }
 
