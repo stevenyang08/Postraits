@@ -22,6 +22,7 @@
 @property NSString *username;
 @property NSString *email;
 @property NSString *key;
+@property NSMutableArray *followers;
 @property NSMutableArray *followings;
 @property NSMutableArray *photoIds;
 

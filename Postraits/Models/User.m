@@ -25,7 +25,17 @@
             NSDictionary *followings = [snapshot.value objectForKey:@"followings"];
             if (followings != nil) {
                 self.followings = [[followings allKeys] mutableCopy];
+            }else{
+                self.followings = [NSMutableArray new];
             }
+            
+            NSDictionary *followers = [snapshot.value objectForKey:@"followers"];
+            if (followers != nil) {
+                self.followers = [[followers allKeys] mutableCopy];
+            }else{
+                self.followers = [NSMutableArray new];
+            }
+            
             NSDictionary *photoIds = [snapshot.value objectForKey:@"images"];
             if (photoIds != nil) {
                 self.photoIds = [[photoIds allKeys] mutableCopy];

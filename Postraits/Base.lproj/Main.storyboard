@@ -1257,7 +1257,7 @@
                                         </variation>
                                         <connections>
                                             <outlet property="imageView" destination="3ya-Xf-agr" id="Co9-es-1Th"/>
-                                            <segue destination="WFq-1e-Exn" kind="show" id="QJf-bH-Glb"/>
+                                            <segue destination="WFq-1e-Exn" kind="show" identifier="PhotoShowSegue" id="QJf-bH-Glb"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -1747,22 +1747,6 @@
                                             <rect key="frame" x="0.0" y="0.0" width="282" height="367.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XEM-W2-Bkd">
-                                                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="312" id="rhK-Iq-zbV"/>
-                                                    </constraints>
-                                                    <variation key="default">
-                                                        <mask key="constraints">
-                                                            <exclude reference="rhK-Iq-zbV"/>
-                                                        </mask>
-                                                    </variation>
-                                                    <variation key="widthClass=compact">
-                                                        <mask key="constraints">
-                                                            <include reference="rhK-Iq-zbV"/>
-                                                        </mask>
-                                                    </variation>
-                                                </imageView>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V0L-uU-yoJ">
                                                     <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                     <subviews>
@@ -1831,6 +1815,9 @@
                                                                     <include reference="UCv-xY-2op"/>
                                                                 </mask>
                                                             </variation>
+                                                            <connections>
+                                                                <segue destination="4tO-2C-rYd" kind="show" identifier="CommentIndexSegue" id="3F3-7I-pUc"/>
+                                                            </connections>
                                                         </button>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1881,6 +1868,22 @@
                                                         </mask>
                                                     </variation>
                                                 </view>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XEM-W2-Bkd">
+                                                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="312" id="rhK-Iq-zbV"/>
+                                                    </constraints>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="rhK-Iq-zbV"/>
+                                                        </mask>
+                                                    </variation>
+                                                    <variation key="widthClass=compact">
+                                                        <mask key="constraints">
+                                                            <include reference="rhK-Iq-zbV"/>
+                                                        </mask>
+                                                    </variation>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="bottomMargin" secondItem="V0L-uU-yoJ" secondAttribute="bottom" constant="-1" id="6VB-U8-Hg2"/>
@@ -1898,8 +1901,8 @@
                                             </constraints>
                                             <variation key="default">
                                                 <mask key="subviews">
-                                                    <exclude reference="XEM-W2-Bkd"/>
                                                     <exclude reference="V0L-uU-yoJ"/>
+                                                    <exclude reference="XEM-W2-Bkd"/>
                                                 </mask>
                                                 <mask key="constraints">
                                                     <exclude reference="g8s-Rz-Kvv"/>
@@ -1916,8 +1919,8 @@
                                             </variation>
                                             <variation key="widthClass=compact">
                                                 <mask key="subviews">
-                                                    <include reference="XEM-W2-Bkd"/>
                                                     <include reference="V0L-uU-yoJ"/>
+                                                    <include reference="XEM-W2-Bkd"/>
                                                 </mask>
                                                 <mask key="constraints">
                                                     <include reference="g8s-Rz-Kvv"/>
@@ -1938,6 +1941,7 @@
                                             <outlet property="likeButton" destination="2FM-te-ghR" id="io5-OP-Axa"/>
                                             <outlet property="likesLabel" destination="e1v-os-5B0" id="21f-Rk-djW"/>
                                             <outlet property="photoImage" destination="XEM-W2-Bkd" id="B7U-W6-xZw"/>
+                                            <segue destination="WFq-1e-Exn" kind="show" id="Ln8-Pj-xwc"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell2" rowHeight="40" id="j0n-Sb-GIG" customClass="CommentTableViewCell">
@@ -2001,7 +2005,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="l7x-67-cET"/>
         <segue reference="exF-nc-wUO"/>
-        <segue reference="4U0-2Z-P0e"/>
-        <segue reference="PdP-E6-YIE"/>
+        <segue reference="QJf-bH-Glb"/>
+        <segue reference="3F3-7I-pUc"/>
     </inferredMetricsTieBreakers>
 </document>
