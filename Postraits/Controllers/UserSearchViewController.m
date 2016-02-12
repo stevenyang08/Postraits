@@ -7,15 +7,16 @@
 //
 
 #import "UserSearchViewController.h"
+#import "ProfileViewController.h"
 #import "DataService.h"
 #import <Firebase/Firebase.h>
+#import "User.h"
 
 @interface UserSearchViewController () <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property NSMutableArray *allUsers;
 @property NSMutableArray *filteredUsers;
-@property BOOL isFiltered;
 
 @end
 
@@ -27,71 +28,69 @@
     self.allUsers = [NSMutableArray new];
     self.filteredUsers = [NSMutableArray new];
     self.searchBar.delegate = self;
-    self.isFiltered = NO;
     
-    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapFrom:)];
-    [self.view addGestureRecognizer:tapGestureRecognizer];
-    
+//    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapFrom:)];
+//    [self.view addGestureRecognizer:tapGestureRecognizer];
+    [self loadUsers];
 }
 
 -(void)viewWillAppear:(BOOL)animated {
-        [self loadUsers];
+    
 }
 
-- (void) handleTapFrom: (UITapGestureRecognizer *)recognizer
-{
-    [self.searchBar resignFirstResponder];
-}
+//- (void) handleTapFrom: (UITapGestureRecognizer *)recognizer
+//{
+//    [self.searchBar resignFirstResponder];
+//}
 
 -(void)loadUsers {
     [[[Firebase alloc] initWithUrl:@"https://postrait.firebaseio.com/users"] observeEventType:FEventTypeChildAdded withBlock:^(FDataSnapshot *snapshot) {
-        NSString *username = [snapshot.value objectForKey:@"username"];
+        User *user = [User new];
         
-        if (username != nil) {
-            [self.allUsers insertObject:username atIndex:0];
+        user.username = [snapshot.value objectForKey:@"username"];
+        user.key = snapshot.key;
+        
+        if (user.username != nil) {
+            [self.allUsers insertObject:user atIndex:0];
+            [self.filteredUsers insertObject:user atIndex:0];
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.tableView reloadData];
             });
-        }else{
-            NSLog(@"%@", snapshot.value);
-        
         }
     }];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
-    if (self.isFiltered == YES) {
-        cell.textLabel.text = [self.filteredUsers objectAtIndex:indexPath.row];
-    }else {
-        cell.textLabel.text = [self.allUsers objectAtIndex:indexPath.row];
-    }
+    
+    cell.textLabel.text = [[self.filteredUsers objectAtIndex:indexPath.row] username];
     return cell;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-        if (self.isFiltered == YES) {
-            return self.filteredUsers.count;
-        }else {
-            return self.allUsers.count;
-        }
+    return self.filteredUsers.count;
 }
 
 -(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
     if (searchText.length == 0) {
-        self.isFiltered = NO;
+        self.filteredUsers = self.allUsers;
     } else {
-        self.isFiltered = YES;
         self.filteredUsers = [NSMutableArray new];
-        for (NSString *friend in self.allUsers) {
-            NSRange friendNameRange = [friend rangeOfString:searchText options:NSCaseInsensitiveSearch];
+        for (User *user in self.allUsers) {
+            NSRange friendNameRange = [user.username rangeOfString:searchText options:NSCaseInsensitiveSearch];
             if (friendNameRange.location != NSNotFound) {
-                [self.filteredUsers addObject:friend];
+                [self.filteredUsers addObject:user];
             }
         }
     }
     [self.tableView reloadData];
 }
 
-
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    ProfileViewController *destination = segue.destinationViewController;
+    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+    User *user = [self.filteredUsers objectAtIndex:indexPath.row];
+    destination.user = user;
+    
+}
 @end

@@ -94,13 +94,24 @@
     
     CGRect rawFrame      = [value CGRectValue];
     CGRect keyboardFrame = [self.view convertRect:rawFrame fromView:nil];
-    
+    [self.view layoutIfNeeded];
     self.bottomConstraint.constant = keyboardFrame.size.height - self.tabBarController.tabBar.frame.size.height;
+    [UIView animateWithDuration:0.25
+                     animations:^{
+                         [self.view layoutIfNeeded];
+                     }];
 }
 
 -(void)keyboardDidHide:(NSNotification *)notification
 {
+    [self.view layoutIfNeeded];
     self.bottomConstraint.constant = 0.0;
+    
+    
+    [UIView animateWithDuration:0.25
+                     animations:^{
+                         [self.view layoutIfNeeded];
+                     }];
 }
 
 - (IBAction)sendComment:(UIButton *)sender {
@@ -121,10 +132,6 @@
     [[DataService dataService] createNewComment:comment photoKey:self.photo.key];
     
     return YES;
-}
-
-- (IBAction)backButtonTapped:(UIButton *)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 

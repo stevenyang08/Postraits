@@ -7,20 +7,18 @@
 //
 
 #import "FeedViewController.h"
-#import "TGCamera.h"
-#import "TGCameraViewController.h"
-#import "TGCameraColor.h"
 #import "FeedTableViewCell.h"
 #import "CommentTableViewCell.h"
 #import "Photo.h"
+#import "Comment.h"
 #import "CommentViewController.h"
+#import "PhotoViewController.h"
 
 @interface FeedViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITableViewDelegate, UITableViewDataSource>
 
 @property (strong, nonatomic) IBOutlet UIImageView *photoView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property NSMutableArray *pictureArray;
-@property NSString *userTest;
 @property NSString *comment1;
 
 @end
@@ -30,87 +28,123 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.pictureArray = [NSMutableArray new];
-    self.tableView.allowsSelection = NO;
     self.tableView.estimatedRowHeight = 40.0;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
-    self.userTest = @"myself123";
+    
+    [self loadPhotos];
+    
     self.comment1 = @"I had the best time ever!!!";
-
-    //self.tableView.rowHeight = 320;
-    
-    
-    // hidden toggle button
-    //[TGCamera setOption:kTGCameraOptionHiddenToggleButton value:[NSNumber numberWithBool:YES]];
-    //[TGCameraColor setTintColor: [UIColor greenColor]];
-    
-    // hidden album button
-    //[TGCamera setOption:kTGCameraOptionHiddenAlbumButton value:[NSNumber numberWithBool:YES]];
-    
-    // hide filter button
-    //[TGCamera setOption:kTGCameraOptionHiddenFilterButton value:[NSNumber numberWithBool:YES]];
-    
-    
     self.photoView.clipsToBounds = YES;
-    
-//    UIBarButtonItem *clearButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
-//                                                                                 target:self
-//                                                                                 action:@selector(clearTapped)];
-//    
-//    self.navigationItem.rightBarButtonItem = clearButton;
 }
 
 -(void)viewDidAppear:(BOOL)animated {
     [self.tableView reloadData];
 }
 
+#pragma mark - Helper Methods
+
+- (void) loadPhotos {
+    FQuery *queryRef = [[[[DataService dataService] IMAGE_REF] queryOrderedByKey] queryLimitedToFirst:20];
+    [queryRef observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
+        
+        for (FDataSnapshot *child in snapshot.children) {
+            Photo *photo = [Photo new];
+            NSString *base64 = [child.value objectForKey:@"string"];
+            
+            if (base64) {
+                NSData *decodedString = [[NSData alloc] initWithBase64EncodedString:base64 options:0];
+                UIImage *decodedImage = [[UIImage alloc] initWithData:decodedString];
+                
+                photo.image = decodedImage;
+                photo.key = child.ref.key;
+                
+                [self.pictureArray insertObject:photo atIndex:0];
+                
+            }else{ return; }
+            
+            // load user
+            NSString *userId = [child.value objectForKey:@"user"];
+            if (userId) {
+                [[[[DataService dataService] USER_REF] childByAppendingPath:userId] observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
+                    if(snapshot.value != [NSNull new]){
+                        User *user = [User new];
+                        
+                        NSString *username = [snapshot.value objectForKey:@"username"];
+                        user.username = username;
+                        photo.user = user;
+                        [self.tableView reloadData];
+                    }else{
+                        [self.pictureArray removeObject:photo];
+                    }
+                }];
+            }else {
+                return;
+            }
+            
+            //load comments
+            NSDictionary *comments = [child.value objectForKey:@"comments"];
+            if (comments != nil) {
+                for (NSString *comment in comments) {
+                    [[[[DataService dataService] COMMENT_REF] childByAppendingPath:comment] observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
+                        if(snapshot.value != [NSNull new]){
+                            Comment *comment = [Comment new];
+                            
+                            NSString *username = [snapshot.value objectForKey:@"body"];
+                            comment.body = username;
+                            [photo.comments addObject:comment];
+                            
+                            [self.tableView reloadData];
+                        }
+                    }];
+                }
+            }
+        };
+        
+    }];
+}
+
 #pragma mark - TableView
+
+
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSString *userTest2 = @"deZMan45";
-    NSString *comment2 = @"Dayme son, dat shit dhere is allz chu needz cuz chu know what i'm saying, homie?";
+    Photo *photo = [self.pictureArray objectAtIndex:indexPath.section];
+    
     if (indexPath.row == 0) {
-    FeedTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-//    cell.photoImage.image = self.photo.image;
-    //cell.usernameLabel.text = self.photo.user;
-        cell.photoImage.image = [UIImage imageNamed:@"empty"];
-        cell.userCommentText.text = [NSString stringWithFormat:@"%@ %@", self.userTest, self.comment1];
+        FeedTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+        cell.photoImage.image = photo.image;
         return cell;
     }
     else {
         CommentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell2" forIndexPath:indexPath];
-        cell.commentTextView.text = [NSString stringWithFormat:@"%@ %@", userTest2, comment2];
-        self.tableView.rowHeight = UITableViewAutomaticDimension;
+        Comment *comment = [photo.comments objectAtIndex:(indexPath.row - 1)];
+        cell.textLabel.text = comment.body;
+        cell.textLabel.numberOfLines = 0;
         return cell;
     }
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 18)];
+    
+    Photo *photo = [self.pictureArray objectAtIndex:section];
 
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, tableView.frame.size.width, 18)];
     [label setFont:[UIFont boldSystemFontOfSize:14]];
-    NSString *string = self.userTest;
+    NSString *string = photo.user.username;
     [label setText:string];
     [view addSubview:label];
     [view setBackgroundColor:[UIColor colorWithRed:166/255.0 green:177/255.0 blue:186/255.0 alpha:1.0]]; //your background color...
     return view;
 }
 
-//-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-//    CGFloat height = 30.0;
-//    return height;
-//}
-//
-//-(CGFloat)tableView:(UITableView *)tableView estimatedHeightForHeaderInSection:(NSInteger)section {
-//    CGFloat height = 30.0;
-//    return height;
-//}
-
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 2;
+    Photo *photo = [self.pictureArray objectAtIndex:section];
+    NSUInteger count = photo.comments.count > 2 ? 2 : photo.comments.count;
+    return 1 + count;
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 4;
+    return self.pictureArray.count;
 }
 
 
@@ -118,7 +152,19 @@
  #pragma mark - Navigation
 
  - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-     
+     if ([segue.identifier isEqualToString:@"PhotoShowSegue"]) {
+         PhotoViewController *destination = segue.destinationViewController;
+         FeedTableViewCell *cell = sender;
+         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+         Photo *photo = self.pictureArray[indexPath.section];
+         destination.photo = photo;
+     }else if ([segue.identifier isEqualToString:@"CommentIndexSegue"]){
+         CommentViewController *destination = segue.destinationViewController;
+         UITableViewCell *cell = sender;
+         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+         Photo *photo = self.pictureArray[indexPath.section];
+         destination.photo = photo;
+     }
  }
  
 

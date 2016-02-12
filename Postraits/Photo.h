@@ -9,9 +9,13 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import "DataService.h"
+#import "User.h"
 
 @interface Photo : NSObject
 
 @property NSString *key;
 @property UIImage *image;
+@property User *user;
+@property NSMutableArray *comments;
+
 @end

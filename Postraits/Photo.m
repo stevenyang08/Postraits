@@ -10,4 +10,14 @@
 
 @implementation Photo
 
+- (instancetype)init {
+    self = [super init];
+    
+    if (self) {
+        self.comments = [NSMutableArray new];
+    }
+    
+    return self;
+}
+
 @end

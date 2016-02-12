@@ -10,4 +10,7 @@
 
 @interface User : NSObject
 
+@property NSString *username;
+@property NSString *key;
+
 @end

@@ -16,6 +16,11 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property NSMutableArray *userImages;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
+@property (weak, nonatomic) IBOutlet UIButton *followButton;
+@property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *postCountLabel;
+@property (weak, nonatomic) IBOutlet UILabel *followersCountLabel;
+@property (weak, nonatomic) IBOutlet UILabel *followingCountLabel;
 
 
 @end
@@ -25,10 +30,64 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.userImages = [NSMutableArray new];
-    
+    self.followButton.hidden = YES;
     [self.activityIndicator startAnimating];
     
-    [[[[DataService dataService] CURRENT_USER_REF] childByAppendingPath:@"images"] observeEventType:FEventTypeChildAdded withBlock:^(FDataSnapshot *snapshot) {
+    [self loadData];
+}
+
+- (void) loadData {
+    
+
+    
+    if (self.user == nil) {
+        self.user = [User new];
+        self.user.key = [[NSUserDefaults standardUserDefaults] stringForKey:@"uid"];
+    }
+    
+    [[[[DataService dataService] USER_REF] childByAppendingPath:self.user.key] observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
+        self.usernameLabel.text = [snapshot.value objectForKey:@"username"];
+        NSDictionary *followers = [snapshot.value objectForKey:@"followers"];
+        
+        if (followers) {
+            self.followersCountLabel.text = [NSString stringWithFormat:@"%lu", (unsigned long)[[followers allKeys] count]];
+        }else{
+            self.followersCountLabel.text = [NSString stringWithFormat:@"%d", 0];
+        }
+        
+        // hide follow button if u followed
+        if ([[followers allKeys] containsObject:[[NSUserDefaults standardUserDefaults] stringForKey:@"uid"]]) {
+            self.followButton.hidden = NO;
+            [self.followButton setTitle:@"Followed" forState:UIControlStateDisabled];
+            self.followButton.backgroundColor = [UIColor lightGrayColor];
+            self.followButton.enabled = NO;
+        }else if ([self currentUserAtOwnProfile]){
+            self.followButton.hidden = YES;
+        }else{
+            self.followButton.hidden = NO;
+        }
+        
+        NSDictionary *followings = [snapshot.value objectForKey:@"followings"];
+        
+        if (followings) {
+            self.followingCountLabel.text = [NSString stringWithFormat:@"%lu", (unsigned long)[[followings allKeys] count]];
+        }else{
+            self.followingCountLabel.text = [NSString stringWithFormat:@"%d", 0];
+        }
+        
+        
+        
+        NSDictionary *images = [snapshot.value objectForKey:@"images"];
+        
+        if (images) {
+            self.postCountLabel.text = [NSString stringWithFormat:@"%lu", (unsigned long)[[images allKeys] count]];
+        }else{
+            self.postCountLabel.text = [NSString stringWithFormat:@"%d", 0];
+        }
+    }];
+    
+    
+    [[[[[DataService dataService] USER_REF] childByAppendingPath:self.user.key] childByAppendingPath:@"images"] observeEventType:FEventTypeChildAdded withBlock:^(FDataSnapshot *snapshot) {
         
         NSString *imageKey = snapshot.key;
         NSString *imagePath = [NSString stringWithFormat:@"%@", imageKey];
@@ -51,18 +110,22 @@
                         [self.activityIndicator stopAnimating];
                     });
                 }
-                
-                
             }
         }];
         
     }];
-    
 }
+
 - (IBAction)onButtonTapped:(UIButton *)sender {
     
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"uid"];
     
+    if (![[self presentingViewController] presentingViewController]) {
+        [[self presentingViewController] dismissViewControllerAnimated:YES completion:nil];
+    } else {
+        [[[self presentingViewController] presentingViewController] dismissViewControllerAnimated:YES completion:nil];
+    }
+
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -95,6 +158,20 @@
     
     destination.photo = photo;
     
+}
+
+- (IBAction)onFollowButtonTapped:(UIButton *)sender {
+    [[[[DataService dataService] CURRENT_USER_REF] childByAppendingPath:@"followings"] updateChildValues:@{self.user.key: [NSNumber numberWithBool:true]}];
+    NSString *currentUserId = [[NSUserDefaults standardUserDefaults] stringForKey:@"uid"];
+    [[[[[DataService dataService] USER_REF] childByAppendingPath:self.user.key] childByAppendingPath:@"followers"] updateChildValues:@{currentUserId: [NSNumber numberWithBool:true]}];
+    
+    [self.followButton setTitle:@"Followed" forState:UIControlStateDisabled];
+    self.followButton.enabled = NO;
+    self.followButton.backgroundColor = [UIColor lightGrayColor];
+}
+
+- (BOOL)currentUserAtOwnProfile{
+    return [self.user.key isEqualToString:[[NSUserDefaults standardUserDefaults] objectForKey:@"uid"]];
 }
 
 @end

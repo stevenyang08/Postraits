@@ -29,12 +29,20 @@
     [self.view addGestureRecognizer:tapGestureRecognizer];
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.emailTextField.text = @"";
+    self.passwordTextField.text = @"";
+}
+
 - (void)viewDidAppear:(BOOL)animated{
 
     if ([[NSUserDefaults standardUserDefaults] stringForKey:@"uid"] && [[[DataService dataService] CURRENT_USER_REF] authData]) {
         
         [self performSegueWithIdentifier:@"login" sender:nil];
     }
+    
+    
 }
 
 
